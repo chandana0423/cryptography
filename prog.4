@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<conio.h>
+#include<ctype.h>
+#include<string.h>
+void encipher();
+void decipher();
+int main()
+{
+	int choice,value;
+	while(1)
+	{
+		printf("\n1. encrypt text: ");
+		printf("\n2. decrypt text: ");
+		printf("\n 3. exit: ");
+		printf("\n\n enter our choice:");
+		scanf("%d",&choice);
+		if(choice==3)
+	    exit(0);
+		else if(choice==1)
+		encipher();
+		else if(choice==2)
+		decipher();
+		else
+		printf("enter valid option:");
+}
+}
+void encipher()
+{
+	 unsigned int i,j;
+	 char input[50],key[10];
+	 printf("\n enter plain text:");
+	 scanf("%s",input);
+	 printf("enter key value:");
+	 scanf("%d",&key);
+	 printf("resultant cipher text:");
+	 for(i=0,j=0;i<strlen(input);i++)
+	 {
+	 	if(j>strlen(key))
+	 	{
+	 		j=0;
+	 	}
+	printf("%c",65+(((toupper(input[i])-65)+(toupper(key[j])-65))%26));
+}
+}
+void decipher()
+{
+	 unsigned int i,j,value;
+	 char input[50],key[10];
+	 printf("\n enter cipher text:");
+	 scanf("%s",input);
+	 printf("enter key value:");
+	 scanf("%d",&key);
+	
+	 for(i=0,j=0;i<strlen(input);i++)
+	 {
+	 	if(j>strlen(key))
+	 	{
+	 		j=0;
+	 	}
+	    value=(toupper(input[i]-64)-(toupper(key[j])-64));
+	    if(value<0)
+	    {value=value*-1;
+		}
+		printf("%c",65+(value%26));
+	 	
+}		
+}
+
